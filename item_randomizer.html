@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Arena Item Randomizer</title>
+	</head>
+	<body>
+		<h1>Arena Item Randomizer</h1>
+		<p>This tool will generate an item drop from a list of provided items, along with a probability of appearance and coordinates.</p>
+		<h3>Item List</h3>
+		<p>Create a list of items here.</p>
+		<label for="item">Item:</label>
+		<input type="text" id="item" name="Item">
+		<input type="button" value="submit" id="item add">
+		<ul id="item list"></ul>
+		<script type="text/javascript">
+			// Listener for button - gets values onclick
+			document.getElementById("item add").onclick = function() {
+				// Define list element
+				var node = document.createElement("li");
+				
+				// Get text from input
+				var text = document.getElementById("item").value
+				
+				// Create text node
+				var textnode = document.createTextNode(text);
+				
+				// Append text node to list element
+				node.appendChild(textnode);
+				
+				// Append list element to list
+				document.getElementById("item list").appendChild(node);
+			}
+		</script>
+		<h3>Probability of Item Appearance</h3>
+		<p>Enter probability of any item appearing.</p>
+		<label for="probability">Probability of Item Generation:</label>
+		<input type="text" id="probability" name="Item Probability">
+		<input type="button" value="submit" id="item probability set">
+		<br/>
+		<span id="display item probability" />
+		<script type="text/javascript">
+			document.getElementById("item probability set").onclick = function() {
+				// get probability value - clips numbers below 0 to 0 and above 1 to 1
+				var prob_value = document.getElementById("probability").value
+				prob_value = Math.max(prob_value, 0);
+				prob_value = Math.min(prob_value, 1);
+				
+				// set html to probability value
+				document.getElementById("display item probability").innerHTML = prob_value;
+			}
+		</script>
+	</body>
+</html>
