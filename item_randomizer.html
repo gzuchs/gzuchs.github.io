@@ -6,6 +6,7 @@
 	<body>
 		<h1>Arena Item Randomizer</h1>
 		<p>This tool will generate an item drop from a list of provided items, along with a probability of appearance and coordinates.</p>
+		<h2>
 		<h3>Item List</h3>
 		<p>Create a list of items here.</p>
 		<label for="item">Item:</label>
@@ -45,7 +46,7 @@
 		<input type="text" id="probability" name="Item Probability">
 		<input type="button" value="submit" id="item probability set">
 		<br/>
-		<span id="display item probability" />
+		<span id="display item probability">0</span>
 		<script type="text/javascript">
 			document.getElementById("item probability set").onclick = function() {
 				// get probability value - clips numbers below 0 to 0 and above 1 to 1
@@ -57,8 +58,43 @@
 				document.getElementById("display item probability").innerHTML = prob_value;
 			}
 		</script>
-		<h3>Arena Coordinates<h3>
-		<p>Enter x and y coordinate ranges for arena.<p>
-		
+		<br/>
+		<h3>Arena Coordinates</h3>
+		<p>Enter x and y coordinate ranges for arena.</p>
+		<div>
+			<p>x-coordinate range</p>
+			<input type="text" id="x start" name="X Coordinate Start">
+			<input type="text" id="x end" name="X Coordinate End">
+		</div>
+		<div>
+			<p>y-coordinate range</p>
+			<input type="text" id="y start" name="Y Coordinate Start">
+			<input type="text" id="y end" name="Y Coordinate End">
+		</div>
+		<br/>
+		<div>
+			<input type="button" value="Submit Coordinate Ranges" id="submit coordinates">
+		</div>
+		<div>
+			<span id="x start display">0</span>
+			<span id="x end display">0</span>
+			<br/>
+			<span id="y start display">0</span>
+			<span id="y end display">0</span>			
+		</div>		
+		<script type="text/javascript">
+			document.getElementById("submit coordinates").onclick = function() {
+				// get coordinate ranges and displays them
+				var x_start = document.getElementById("x start").value
+				var x_end = document.getElementById("x end").value
+				var y_start = document.getElementById("y start").value
+				var y_end = document.getElementById("y end").value
+				
+				document.getElementById("x start display").innerHTML = x_start;
+				document.getElementById("x end display").innerHTML = x_end;
+				document.getElementById("y start display").innerHTML = y_start;
+				document.getElementById("y end display").innerHTML = y_end;
+			}
+		</script>
 	</body>
 </html>
