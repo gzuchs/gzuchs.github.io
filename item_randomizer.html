@@ -44,20 +44,6 @@
 		<p>Enter probability of any item appearing.</p>
 		<label for="probability">Probability of Item Generation:</label>
 		<input type="text" id="chance of item" name="Chance of Item Appearing">
-		<input type="button" value="submit" id="item probability set">
-		<br/>
-		<span id="display item probability">0</span>
-		<script type="text/javascript">
-			document.getElementById("item probability set").onclick = function() {
-				// get probability value - clips numbers below 0 to 0 and above 1 to 1
-				var prob_value = document.getElementById("chance of item").value
-				prob_value = Math.max(prob_value, 0);
-				prob_value = Math.min(prob_value, 1);
-				
-				// set html to probability value
-				document.getElementById("display item probability").innerHTML = prob_value;
-			}
-		</script>
 		<br/>
 		<h3>Arena Coordinates</h3>
 		<p>Enter x and y coordinate ranges for arena.</p>
@@ -71,31 +57,6 @@
 			<input type="text" id="y start" name="Y Coordinate Start">
 			<input type="text" id="y end" name="Y Coordinate End">
 		</div>
-		<br/>
-		<div>
-			<input type="button" value="Submit Coordinate Ranges" id="submit coordinates">
-		</div>
-		<div>
-			<span id="x start display">0</span>
-			<span id="x end display">0</span>
-			<br/>
-			<span id="y start display">0</span>
-			<span id="y end display">0</span>			
-		</div>		
-		<script type="text/javascript">
-			document.getElementById("submit coordinates").onclick = function() {
-				// get coordinate ranges and displays them
-				var x_start = document.getElementById("x start").value
-				var x_end = document.getElementById("x end").value
-				var y_start = document.getElementById("y start").value
-				var y_end = document.getElementById("y end").value
-				
-				document.getElementById("x start display").innerHTML = x_start;
-				document.getElementById("x end display").innerHTML = x_end;
-				document.getElementById("y start display").innerHTML = y_start;
-				document.getElementById("y end display").innerHTML = y_end;
-			}
-		</script>
 		<h2>Results</h2>
 		<input type="button" value="Generate Random Item" id="random item generator">
 		<br/>
@@ -113,13 +74,21 @@
 					let generated_item_list_index = Math.floor(Math.random() * item_list.length);
 					let generated_item = String(item_list[generated_item_list_index].innerText);
 					
-					item_results = generated_item.concat(" has been generated");
+					let x_start = document.getElementById("x start").value
+					let x_end = document.getElementById("x end").value
+					let y_start = document.getElementById("y start").value
+					let y_end = document.getElementById("y end").value
+					
+					let x_coord = Math.round((x_end - x_start + 1) * Math.random() + x_start);
+					let y_coord = Math.round((y_end - y_start + 1) * Math.random() + y_start);
+					
+					item_results = generated_item.concat(" has been generated at x=", x_coord, " and y=", y_coord, ".");
 				}
 				else {
 					item_results = "No item has been generated.";
 				}
 				
-				document.getElementById("item randomizer results").innerHTML = item_results.concat(" - ", (Math.round(random_number * 100) / 100).toString());
+				document.getElementById("item randomizer results").innerHTML = item_results;
 			}
 		</script>
 	</body>
