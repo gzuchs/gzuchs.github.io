@@ -10,7 +10,7 @@
 		<h3>Item List</h3>
 		<p>Create a list of items here.</p>
 		<label for="item">Item:</label>
-		<input type="text" id="item" name="Item">
+		<input type="text" id="item" name="Item" onkeydown="handle_enter(event)">
 		<input type="button" value="submit" id="item add" onclick="add_element_to_list()">
 		<ul id="item list"></ul>
 		<script type="text/javascript">
@@ -38,6 +38,15 @@
 				
 				// Append list element to list
 				document.getElementById("item list").appendChild(node);
+			}
+			
+			// Function that listens for enter key and runs add_element_to_list
+			function handle_enter(e) {
+				// gets keyCode or key is pressed
+				var key = e.keyCode || e.key;
+				if (key == 13) {
+					add_element_to_list();
+				}
 			}
 			
 			// Listener for item add button - gets values onclick
