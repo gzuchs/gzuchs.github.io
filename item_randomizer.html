@@ -114,7 +114,7 @@
 					item_results = "No item has been generated.";
 				}
 				
-				document.getElementById("item randomizer results").innerHTML = item_results
+				document.getElementById("item randomizer results").innerHTML = item_results.concat(" - ", (Math.round(random_number * 100) / 100).toString());
 			}
 		</script>
 	</body>
