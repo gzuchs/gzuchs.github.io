@@ -6,7 +6,7 @@
 	<body>
 		<h1>Arena Item Randomizer</h1>
 		<p>This tool will generate an item drop from a list of provided items, along with a probability of appearance and coordinates.</p>
-		<h2>
+		<h2>Settings</h2>
 		<h3>Item List</h3>
 		<p>Create a list of items here.</p>
 		<label for="item">Item:</label>
@@ -43,14 +43,14 @@
 		<h3>Probability of Item Appearance</h3>
 		<p>Enter probability of any item appearing.</p>
 		<label for="probability">Probability of Item Generation:</label>
-		<input type="text" id="probability" name="Item Probability">
+		<input type="text" id="chance of item" name="Chance of Item Appearing">
 		<input type="button" value="submit" id="item probability set">
 		<br/>
 		<span id="display item probability">0</span>
 		<script type="text/javascript">
 			document.getElementById("item probability set").onclick = function() {
 				// get probability value - clips numbers below 0 to 0 and above 1 to 1
-				var prob_value = document.getElementById("probability").value
+				var prob_value = document.getElementById("chance of item").value
 				prob_value = Math.max(prob_value, 0);
 				prob_value = Math.min(prob_value, 1);
 				
@@ -94,6 +94,27 @@
 				document.getElementById("x end display").innerHTML = x_end;
 				document.getElementById("y start display").innerHTML = y_start;
 				document.getElementById("y end display").innerHTML = y_end;
+			}
+		</script>
+		<h2>Results</h2>
+		<input type="button" value="Generate Random Item" id="random item generator">
+		<br/>
+		<span id="item randomizer results"></span>
+		<script type="text/javascript">
+			// Listener for random item generator button - will use elements of item list, probability, and x start, x end, y start, and y end for generating item depending on chance
+			document.getElementById("random item generator").onclick = function() {
+				let item_results;
+				let random_number = Math.random()
+				let chance_of_item = document.getElementById("chance of item").value
+				
+				if (random_number < chance_of_item) {
+					item_results = "Item has been generated.";
+				}
+				else {
+					item_results = "No item has been generated.";
+				}
+				
+				document.getElementById("item randomizer results").innerHTML = item_results
 			}
 		</script>
 	</body>
