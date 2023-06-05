@@ -108,7 +108,12 @@
 				let chance_of_item = document.getElementById("chance of item").value
 				
 				if (random_number < chance_of_item) {
-					item_results = "Item has been generated.";
+					let item_list = document.getElementById("item list").getElementsByTagName("li");
+					
+					let generated_item_list_index = Math.floor(Math.random() * item_list.length);
+					let generated_item = String(item_list[generated_item_list_index].innerText);
+					
+					item_results = generated_item.concat(" has been generated");
 				}
 				else {
 					item_results = "No item has been generated.";
