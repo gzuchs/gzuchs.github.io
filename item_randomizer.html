@@ -13,7 +13,7 @@
 		<input type="button" value="submit" id="item add">
 		<ul id="item list"></ul>
 		<script type="text/javascript">
-			// Listener for button - gets values onclick
+			// Listener for item add button - gets values onclick
 			document.getElementById("item add").onclick = function() {
 				// Define list element
 				var node = document.createElement("li");
@@ -29,6 +29,14 @@
 				
 				// Append list element to list
 				document.getElementById("item list").appendChild(node);
+			}
+		</script>
+		<input type="button" value="Clear List" id="empty item list">
+		<script type="text/javascript">
+			// Listener for empty item list button - clears item list
+			document.getElementById("empty item list").onclick = function() {
+				var item_list = document.getElementById("item list");
+				item_list.innerHTML = '';
 			}
 		</script>
 		<h3>Probability of Item Appearance</h3>
@@ -49,5 +57,8 @@
 				document.getElementById("display item probability").innerHTML = prob_value;
 			}
 		</script>
+		<h3>Arena Coordinates<h3>
+		<p>Enter x and y coordinate ranges for arena.<p>
+		
 	</body>
 </html>
