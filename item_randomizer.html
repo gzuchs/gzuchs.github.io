@@ -11,12 +11,20 @@
 		<p>Create a list of items here.</p>
 		<label for="item">Item:</label>
 		<input type="text" id="item" name="Item">
-		<input type="button" value="submit" id="item add">
+		<input type="button" value="submit" id="item add" onclick="add_element_to_list()">
 		<ul id="item list"></ul>
 		<script type="text/javascript">
-			// Listener for item add button - gets values onclick
-			document.getElementById("item add").onclick = function() {
-				// Define list element
+			// Function that handles ENTER press
+			function handle(event) {
+				if (event.keyCode === 13){
+					event.preventDefault();
+					
+					alert("Enter was pressed was presses");
+				}
+			}
+		
+			// Function that gets item text and adds to item list
+			function add_element_to_list() {
 				var node = document.createElement("li");
 				
 				// Get text from input
@@ -31,6 +39,11 @@
 				// Append list element to list
 				document.getElementById("item list").appendChild(node);
 			}
+			
+			// Listener for item add button - gets values onclick
+			
+			// Listener for ENTER button pressed in item field - gets values on hitting ENTER
+			// document.getElementById("item").onkeydown("handle(event)")
 		</script>
 		<input type="button" value="Clear List" id="empty item list">
 		<script type="text/javascript">
@@ -68,9 +81,12 @@
 				let random_number = Math.random()
 				let chance_of_item = document.getElementById("chance of item").value
 				
+				// check to see if an item has been generated
 				if (random_number < chance_of_item) {
+					// get item list as an array
 					let item_list = document.getElementById("item list").getElementsByTagName("li");
 					
+					// sample from item array
 					let generated_item_list_index = Math.floor(Math.random() * item_list.length);
 					let generated_item = String(item_list[generated_item_list_index].innerText);
 					
@@ -79,9 +95,11 @@
 					let y_start = document.getElementById("y start").value
 					let y_end = document.getElementById("y end").value
 					
+					// randomly generate coordinates between ranges
 					let x_coord = Math.round((x_end - x_start + 1) * Math.random() + x_start);
 					let y_coord = Math.round((y_end - y_start + 1) * Math.random() + y_start);
 					
+					// create message
 					item_results = generated_item.concat(" has been generated at x=", x_coord, " and y=", y_coord, ".");
 				}
 				else {
